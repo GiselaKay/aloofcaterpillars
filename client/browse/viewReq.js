@@ -1,7 +1,11 @@
 angular.module('viewReq', [])
 
-.controller('viewCtrl', function($scope, Meals, $compile, $location, $window) {
+.controller('viewCtrl', function($scope, Meals, $compile, $window, $location) {
   //TODO: we need to figure out current user and pass that in the get request
+  if(!($window.localStorage.getItem('com.oneAppUser'))){
+    $location.href = "#/signin";
+  }
+  // debugger;
   $scope.user = $window.localStorage.getItem('com.oneAppUser').toLowerCase();
 
   //Initialize variables
