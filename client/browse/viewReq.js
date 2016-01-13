@@ -20,6 +20,10 @@ angular.module('viewReq', [])
   Meals.pendingReq().then(function(response) {
     var getData = response
     for (var i = 0; i<getData.length;i++) {
+      // WTF WHY NULL
+      if(!getData[i].creator){
+        alert("We forgot who created this dish...Sorry!");
+      }
       if (getData[i].creator.toLowerCase() === $scope.user) {
         $scope.pending.push(getData[i])
       }
