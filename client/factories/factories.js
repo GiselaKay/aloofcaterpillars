@@ -1,7 +1,7 @@
 angular.module('factories', ['ngMaterial', 'ngMessages'])
 
 .factory('Meals', function($http) {
-  
+
 //Right now, all categories of primary ingredient are hard-coded here.
 //TODO: move categories to database
   var ingredients = [
@@ -66,7 +66,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     })
   }
 
-  
+
 //Views pending requests. Passes a username
 
 //Note: GET requests as I know it don't have the username in the req.body
@@ -75,7 +75,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     return $http({
       method: 'GET',
       url: 'api/viewpending',
-    }).then(function(resp) {      
+    }).then(function(resp) {
       return resp.data
     })
   }
@@ -138,7 +138,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     var signup = function(user) {
       return $http({
           method: 'POST',
-          url: '/api/register',
+          url: '/boorish/users',
           data: user
         })
         .then(function(resp) {
@@ -174,15 +174,17 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       currentUser: currentUser
     };
   });
-  // .factory('homepage', function ($http){
-  //   $http({
-  //     method: 'GET',
-  //     url: '/api/user'
-  //   }).then(function(resp){
-  //     $scope.myLunch = resp.data.myLunch;
-  //     $scope.madeLunch = resp.data.madeLunch;
-  //   })
-  // })
-// ;
-    
-
+  .factory('homepage', function ($http){
+    var getHomePageData = function (){
+      var userID = $window.localStorage.getItem('com.oneAppUser');
+      $http({
+        method: 'GET',
+        url: '/boorish/meals/users/' + userID
+      }).then(function(resp){
+        $scope.currentEating = resp.data.eating.current;
+        $scope.currentCreated = resp.data.created.current;
+        $scope.pastEating = resp.data.eating.past;
+        $scope.pastCreated = resp.data.created.past;
+      })
+    }
+  });
