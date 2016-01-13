@@ -15,7 +15,7 @@ angular.module('feedback', [])
           meal_id: pastMeal.meal_id,
           title: pastMeal.title,
           date_available: pastMeal.date_available,
-          ratings: ratingAves;
+          ratings: ratingAves
         };
       });
     } else {
