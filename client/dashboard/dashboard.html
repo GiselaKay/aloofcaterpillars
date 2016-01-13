@@ -11,56 +11,57 @@
         </md-card-title-media>
       </md-card-title>
       <md-card-content>
-        <p>[PLACEHOLDER NUMBER]</p>
+        <p>{{ foodTokens }}</p>
       </md-card-content>
     </md-card>
 
     <md-card>
-      <img ng-src="{{imagePath}}" class="md-card-image">
+      <img ng-src="{{ nextMeal.imgUrl }}" class="md-card-image">
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Next Meal To Share</span>
+          <span class="md-headline">Next Meal You're Sharing</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>[PLACEHOLDER MEAL NAME]</p>
-        <p>[PLACEHOLDER AVAILABIILTY DATE]</p>
-        <p>[PLACEHOLDER MEAL PORTIONS]</p>
+        <p>{{ nextMeal.title }}</p>
+        <p>{{ nextMeal.date_available }}</p>
+        <p>{{ nextMeal.portions }}</p>
       </md-card-content>
       <md-card-actions layout="column" layout-align="start">
-        <md-button>Action 1</md-button>
+        <md-button>Create a meal!</md-button>
       </md-card-actions>
     </md-card>
 
     <md-card>
-      <img ng-src="{{imagePath}}" class="md-card-image">
+      <img ng-src="{{ oneFeedback.imgUrl }}" class="md-card-image">
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">What people have said about [MEAL NAME]</span>
+          <span class="md-headline">What People Think About...</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>[PLACEHOLDER TEXT]</p>
-        <p>[PLACEHOLDER SCORE]</p>
+        <p>{{ oneFeedback.title }}</p>
+        <p>{{ oneFeedback.overall }}</p>
       </md-card-content>
       <md-card-actions layout="column" layout-align="start">
-        <md-button>Action 1</md-button>
+        <md-button>More Feedback...</md-button>
       </md-card-actions>
     </md-card>
 
     <md-card>
-      <img ng-src="{{imagePath}}" class="md-card-image">
+      <img ng-src="{{ nextOffer.imgUrl }}" class="md-card-image">
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Upcoming Meal</span>
+          <span class="md-headline">Your Next Meal</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>[PLACEHOLDER MEAL NAME]</p>
-        <p>[PLACEHOLDER MEAL DATE]</p>
+        <p>{{ nextOffer.title }}</p>
+        <p>{{ nextOffer.date_available }}</p>
+        <p>Made by {{ nextOffer.creator }}</p>
       </md-card-content>
       <md-card-actions layout="column" layout-align="start">
-        <md-button>Action 1</md-button>
+        <md-button>More Meals...</md-button>
       </md-card-actions>
     </md-card>
 
