@@ -1,4 +1,4 @@
-<section id="Experience_area" class="section_padding">
+<!-- <section id="Experience_area" class="section_padding">
 	<div class="col-md-6 col-md-offset-3" ng-model='register' ng-controller='AuthController'>
     <h2>Register an account</h2>
  <form novalidate class="simple-form">
@@ -8,4 +8,24 @@
   </form>
   <a href="#/signin" class="btn btn-link">already have an account ? </a>
 	</div>
-</section>
+</section> -->
+
+<md-content layout-padding>
+    <div ng-model='register' ng-controller='AuthController'>
+      <form name="userForm">
+      	<h2 class="md-display-1">Register</h2>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Username</label>
+            <input ng-model="user.username" type='text'>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Password</label>
+            <input ng-model="user.password" type='password'>
+          </md-input-container>
+        </div>
+        <md-button type="submit" ng-click="signup()" class="md-raised md-primary">Register</md-button>
+      </form>
+      <md-button ng-href='#/signin' class="md-raised">Sign In</md-button>
+    </div>
+  </md-content>
