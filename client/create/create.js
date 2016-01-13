@@ -29,7 +29,10 @@ angular.module('create', [])
       $scope.myDate.getMonth() + 1,
       $scope.myDate.getDate());
   //Add meal via POST request from Meals factory
+      console.log('MEAL CREATED', $location);
+      // debugger;
     $scope.addMeal = function(meal) {
+
       var meal = meal;
       $scope.meal.creator = Auth.currentUser();
 
@@ -39,7 +42,6 @@ angular.module('create', [])
       })
       .then(function(res) {
         $location.path('/browse')
-
       });
     };
 
