@@ -142,7 +142,13 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
           data: user
         })
         .then(function(resp) {
-          return resp.data.token
+          if (resp.status === 200) {
+            return resp.data.token;
+          }
+          if (resp.status === 409) {
+            $scope.error = "Username already exists"
+          }
+          return;
         });
     };
 
@@ -168,5 +174,15 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       currentUser: currentUser
     };
   });
+  // .factory('homepage', function ($http){
+  //   $http({
+  //     method: 'GET',
+  //     url: '/api/user'
+  //   }).then(function(resp){
+  //     $scope.myLunch = resp.data.myLunch;
+  //     $scope.madeLunch = resp.data.madeLunch;
+  //   })
+  // })
+// ;
     
 
