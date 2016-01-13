@@ -1,8 +1,10 @@
 angular.module('create', [])
 
-.controller('createCtrl', ['$scope', 'Meals', 'Upload', 'Auth', '$base64', '$window', function($scope, Meals, Upload, Auth) {
+.controller('createCtrl', ['$scope', 'Meals', 'Upload', '$window', '$location', 'Auth', function($scope, Meals, Upload, $window, $location, Auth) {
 
   //Add meal via POST request from Meals factory
+      console.log('MEAL CREATED', $location);
+      // debugger;
     $scope.addMeal = function(meal) {
      
     var meal = meal;
@@ -14,8 +16,7 @@ angular.module('create', [])
       data: {meal: meal, creator: creator, title: $scope.meal.title, quantity: $scope.meal.quantity},
     });
     meal.upload.then(function (resp) {
-      alert('MEAL CREATED')
-
+      $location.path("/browse")
       });
     }
 
