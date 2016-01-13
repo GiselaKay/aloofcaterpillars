@@ -4,7 +4,7 @@
       <span>People Have Requested...</span>
     </h2>
   </md-toolbar>
-  <md-content layout-padding>
+  <md-content layout-padding ng-cloak>
     <md-list ng-if='!sharedMeals.length'>
       <md-list-item class="md-3-line">
         <img ng-src=''>
@@ -37,7 +37,7 @@
       <span>Upcoming Meals</span>
     </h2>
   </md-toolbar>
-  <md-content layout-padding>
+  <md-content layout-padding ng-cloak>
     <md-list ng-if='!nextMeals.length'>
       <md-list-item class="md-3-line">
         <img ng-src=''>
