@@ -1,4 +1,14 @@
-.inputdemoBasicUsage .md-datepicker-button {
+/*md-card-title {
+    background-color: #eee;
+    border-bottom: 1px solid #E1E1E3;
+}
+
+md-card-actions {
+    background-color: #eee;
+    border-top: 1px solid #E1E1E3;
+}*/
+
+/*.inputdemoBasicUsage .md-datepicker-button {
   width: 36px; }
 
 .hr1 {
@@ -18,7 +28,7 @@
     Used fmp-card-directive if you want to look it up
 
 */
-
+/*
 .carddemoBasicUsage .card-media {
   background-color: #999999; }
 
@@ -32,9 +42,9 @@
 ul { overflow:auto; }
 
 
-
+*/
 /* Allows for all the figure sliding goodness*/
-figure {
+/*figure {
     margin: 0;
     position: relative;
     width: 70%;
@@ -81,7 +91,7 @@ figure a.close-caption.hidden {
 
 
 /*More figure sliding magic*/
-#effect-1 a.close-caption {
+/*#effect-1 a.close-caption {
     bottom: 10px;
     right: 10px;
 }
@@ -106,4 +116,4 @@ button {
     color: black;
 
 
-}
+}*/

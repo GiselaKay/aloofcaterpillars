@@ -10,22 +10,36 @@
 	</div>
 </section> -->
 
-<md-content layout-padding>
-    <div ng-model='register' ng-controller='AuthController'>
-      <form name="userForm">
-      	<h2 class="md-display-1">Register</h2>
-        <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Username</label>
-            <input ng-model="user.username" type='text'>
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Password</label>
-            <input ng-model="user.password" type='password'>
-          </md-input-container>
-        </div>
-        <md-button type="submit" ng-click="signup()" class="md-raised md-primary">Register</md-button>
-      </form>
-      <md-button ng-href='#/signin' class="md-raised">Sign In</md-button>
-    </div>
-  </md-content>
+<md-content class="md-padding" layout="row" layout-wrap="" layout-align="center start">
+  <div ng-model='register' ng-controller='AuthController' flex="40" flex-xs="100" layout="column">
+    <md-card>
+      <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Join us!</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <form name="userForm" layout='column'>
+            <md-input-container class="md-block">
+              <label>Username</label>
+              <input ng-model="user.username" type='text'>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <input ng-model="user.password" type='password'>
+            </md-input-container>
+          <div layout='row' layout-align='end center'>
+            <md-button ng-href='#/signin'>Already have an account?</md-button>
+            <md-button type="submit" ng-click="signup()" class="md-raised md-primary">Register</md-button>
+          </div>
+        </form>
+      </md-card-content>
+      <!-- <md-card-actions layout="row" layout-align="end center">
+        <md-button>Action 1</md-button>
+        <md-button>Action 2</md-button>
+      </md-card-actions> -->
+    </md-card>
+  </div>
+  </div>
+</md-content>
