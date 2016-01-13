@@ -1,15 +1,36 @@
 <div name='feedback' class='container'>
-  <md-card ng-repeat=''>
+  <md-card ng-repeat='meal in pastMeals' ng-if='pastMeals.length'>
     <md-card-title>
       <md-card-title-text>
-        <span class="md-headline">[PLACEHOLDER MEAL NAME]</span>
+        <span class="md-headline">{{ meal.title }}</span>
+      </md-card-title-text>
+      <md-card-title-media>
+        <div class="md-media-md card-media"></div>
+      </md-card-title-media>
+    </md-card-title>
+    <md-card-content ng-if='meal.ratings.length'>
+      <p>Freshness: {{ meal.ratings[0] }} </p>
+      <p>Flavor: {{ meal.ratings[1] }} </p>
+      <p>Filling: {{ meal.ratings[2] }} </p>
+    </md-card-content>
+    <md-card-content ng-if='!meal.ratings.length'>
+      <p>Nobody's provided any feedback yet :(</p>
+    </md-card-content>
+  </md-card>
+  <md-card ng-if='!pastMeals.length'>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">You haven't shared any meals :(</span>
       </md-card-title-text>
       <md-card-title-media>
         <div class="md-media-md card-media"></div>
       </md-card-title-media>
     </md-card-title>
     <md-card-content>
-      <p ng-repeat=''>Repeats for each type of score</p>
+      <p></p>
     </md-card-content>
+    <md-card-actions layout="column" layout-align="start">
+        <md-button>Create a meal!</md-button>
+      </md-card-actions>
   </md-card>
 </div>
