@@ -5,13 +5,27 @@
     </h2>
   </md-toolbar>
   <md-content layout-padding>
-    <md-list>
-      <md-list-item class="md-3-line" ng-repeat="meal in promised-meals">
+    <md-list ng-if='!sharedMeals.length'>
+      <md-list-item class="md-3-line">
         <img ng-src=''>
         <div class="md-list-item-text">
-          <h3>[PLACEHOLDER MEAL NAME]</h3>
-          <h4>[PLACEHOLDER AVAILABIILTY DATE]</h4>
-          <p>[PLACEHOLDER MEAL PORTIONS]</p>
+          <h3>You're not sharing any meals at the moment</h3>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-list ng-if='sharedMeals.length'>
+      <md-list-item class="md-3-line" ng-repeat="meal in sharedMeals">
+        <img ng-src='{{ meal.imgUrl }}'>
+        <div class="md-list-item-text" ng-if='meal.requesters'>
+          <h3>{{ meal.title }}</h3>
+          <h4>{{ meal.date_available }}</h4>
+          <p>{{ meal.num_portions }}</p>
+          <p>{{ meal.requesters }}</p>
+        </div>
+        <div class="md-list-item-text" ng-if='!meal.requesters'>
+          <h3>{{ meal.title }}</h3>
+          <h4>{{ meal.date_available }}</h4>
+          <p>No one has made any requests yet.</p>
         </div>
         <md-divider md-inset ng-if="!$last"></md-divider>
       </md-list-item>
@@ -24,13 +38,21 @@
     </h2>
   </md-toolbar>
   <md-content layout-padding>
-    <md-list>
-      <md-list-item class="md-3-line" ng-repeat="meal in upcoming-meals">
+    <md-list ng-if='!nextMeals.length'>
+      <md-list-item class="md-3-line">
         <img ng-src=''>
         <div class="md-list-item-text">
-          <h3>[PLACEHOLDER MEAL NAME]</h3>
-          <h4>[PLACEHOLDER AVAILABIILTY DATE]</h4>
-          <p>[PLACEHOLDER MEAL PORTIONS]</p>
+          <h3>You haven't made any requests</h3>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-list ng-if='nextMeals.length'>
+      <md-list-item class="md-3-line" ng-repeat="meal in nextMeals">
+        <img ng-src='{{meal.imgUrl}}'>
+        <div class="md-list-item-text">
+          <h3>{{ meal.title }}</h3>
+          <h4>Made by {{ meal.creator }}</h4>
+          <p>{{ meal.date_available }}</p>
         </div>
         <md-divider md-inset ng-if="!$last"></md-divider>
       </md-list-item>
