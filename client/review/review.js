@@ -1,6 +1,6 @@
 angular.module('review', ['ngMaterial', 'ngMessages'])
 
-.controller('reviewController', function(Auth, Users) {
+.controller('reviewController', function(Auth, Users, Feedback) {
   Users.getMeals()
   .then(function(meals) {
     var needFeedback = [];
@@ -30,7 +30,7 @@ angular.module('review', ['ngMaterial', 'ngMessages'])
       ratingTwo: meal.rating.Two,
       ratingThree: meal.rating.Three
     };
-    Users.submitFeedback(feedback);
+    Feedback.submitFeedback(feedback);
   };
 
 });
