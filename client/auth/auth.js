@@ -3,7 +3,7 @@ angular.module('auth', [])
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
   $scope.click = false;
-  
+
   //if you're coming from logout, destroy token
 
   $scope.clicked = function() {
@@ -12,9 +12,16 @@ angular.module('auth', [])
 
   $scope.signup = function () {
     Auth.signup($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.oneApp', token);
-        $location.path('/browse');
+      .then(function (user) {
+        if(!user.error){
+          $window.localStorage.setItem('com.oneApp', user.token);
+          $window.localStorage.setItem('com.oneAppID', user.id);
+          $location.path('/browse');
+        }
+        else{
+          $scope.error = user.error;
+        }
+        // Auth.currentUser()
       })
       .catch(function (error) {
         console.error(error);
@@ -25,9 +32,8 @@ angular.module('auth', [])
     console.log("sign in info", $scope.user)
     Auth.signin($scope.user)
       .then(function (token) {
-        console.log(token)
         $window.localStorage.setItem('com.oneApp', token.token)
-        $window.localStorage.setItem('com.oneAppUser', token.username);
+        $window.localStorage.setItem('com.oneAppID', token.id);
         $location.path('/browse');
         $scope.user = token.username;
         console.log($scope.user);
