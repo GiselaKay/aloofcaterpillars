@@ -4,20 +4,20 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
 
 //Right now, all categories of primary ingredient are hard-coded here.
 //TODO: move categories to database
-  var ingredients = [
-      { ingredient: 'meat', name: 'Chicken' },
-      { ingredient: 'meat', name: 'Beef' },
-      { ingredient: 'meat', name: 'Pork' },
-      { ingredient: 'meat', name: 'Bacon' },
-      { ingredient: 'veg', name: 'Eggs' },
-      { ingredient: 'veg', name: 'Beans' },
-      { ingredient: 'veg', name: 'Tofu' },
-      { ingredient: 'veg', name: 'Grass' }
-    ];
+  // var ingredients = [
+  //     { ingredient: 'meat', name: 'Chicken' },
+  //     { ingredient: 'meat', name: 'Beef' },
+  //     { ingredient: 'meat', name: 'Pork' },
+  //     { ingredient: 'meat', name: 'Bacon' },
+  //     { ingredient: 'veg', name: 'Eggs' },
+  //     { ingredient: 'veg', name: 'Beans' },
+  //     { ingredient: 'veg', name: 'Tofu' },
+  //     { ingredient: 'veg', name: 'Grass' }
+  //   ];
 
-  var restrictions = [
-    'None', 'Vegetarian', 'Paleo',  'Gluten-Free', 'Low-Carb'
-  ]
+  // var restrictions = [
+  //   'None', 'Vegetarian', 'Paleo',  'Gluten-Free', 'Low-Carb'
+  // ]
 
   var storeMeal = function(meal) {
     //TODO: Switch to addMeal
@@ -35,8 +35,8 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
 //Standard GET for all meals
   var getAllMeals = function() {
     return $http({
-      method:'GET',
-      url:'/boorish/meals'
+      method: 'GET',
+      url: '/boorish/meals'
     }).success(function(resp){
       return resp.data;
     }).error(function(){
@@ -44,76 +44,75 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     })
   }
 
+
 //Changes food status to pending
-  var makeReq = function(req) {
-    return $http({
-      method: 'PUT',
-      url: 'api/makerequest',
-      data: req
-    }).then(function(resp) {
-      return resp.data
-    })
-  }
+  // var makeReq = function(req) {
+  //   return $http({
+  //     method: 'PUT',
+  //     url: 'api/makerequest',
+  //     data: req
+  //   }).then(function(resp) {
+  //     return resp.data
+  //   })
+  // }
 
 
 //See below comment on GET
-  var getUserMeals = function(userMeals) {
-    return $http({
-      method: 'GET',
-      url: 'api/usermeals',
-      data: userMeals
-    }).then(function(resp) {
-      return resp.data
-    })
-  }
+  // var getUserMeals = function(userMeals) {
+  //   return $http({
+  //     method: 'GET',
+  //     url: 'api/usermeals',
+  //     data: userMeals
+  //   }).then(function(resp) {
+  //     return resp.data
+  //   })
+  // }
 
 
 //Views pending requests. Passes a username
 
 //Note: GET requests as I know it don't have the username in the req.body
 //Therefore, filtering happened on front end. This is basically a normal GET
-  var pendingReq = function(user) {
-    return $http({
-      method: 'GET',
-      url: 'api/viewpending',
-    }).then(function(resp) {
-      return resp.data
-    })
-  }
+  // var pendingReq = function(user) {
+  //   return $http({
+  //     method: 'GET',
+  //     url: 'api/viewpending',
+  //   }).then(function(resp) {
+  //     return resp.data
+  //   })
+  // }
 
 
 //Confirms request from View Request Screen
-  var confirmReq = function(meal) {
-    return $http({
-      method: 'PUT',
-      url: 'api/confirmrequest',
-      data: meal
-    }).then(function(resp) {
-      return resp.data
-    })
-  }
+  // var confirmReq = function(meal) {
+  //   return $http({
+  //     method: 'PUT',
+  //     url: 'api/confirmrequest',
+  //     data: meal
+  //   }).then(function(resp) {
+  //     return resp.data
+  //   })
+  // }
 
 //This one isn't used yet
-  var searchByIngredient = function(ingredient){
-    return $http({
-      method: 'POST',
-      url: 'api/getingredient',
-      data: ingredient
-    }).then(function(resp){
-      return resp.data
-    })
-  }
+  // var searchByIngredient = function(ingredient){
+  //   return $http({
+  //     method: 'POST',
+  //     url: 'api/getingredient',
+  //     data: ingredient
+  //   }).then(function(resp){
+  //     return resp.data
+  //   })
+  // }
 
   return {
     storeMeal: storeMeal,
-    ingredients: ingredients,
-    restrictions: restrictions,
-    getAllMeals: getAllMeals,
-    getUserMeals: getUserMeals,
-    confirmReq: confirmReq,
-    makeReq: makeReq,
-    pendingReq: pendingReq,
-    searchByIngredient: searchByIngredient,
+    getAllMeals: getAllMeals
+    // getUserMeals: getUserMeals,
+    // confirmReq: confirmReq,
+    // makeReq: makeReq,
+    // pendingReq: pendingReq,
+    // searchByIngredient: searchByIngredient,
   }
 })
 .factory('Auth', function($http, $location, $window) {
@@ -132,11 +131,13 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         if(situation === "signIn"){
           return "Wrong Password";
         }
-        else if(situation == "signUp"){
-          return "Username Already Exists";
-        }
         else if (situation === "checkAuth") {
           return "Not Logged In";
+        }
+      }
+      else if (status === 403){
+        if(situation == "signUp"){
+          return "Username Already Exists";
         }
       }
       else {
@@ -144,16 +145,16 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       }
     }
 
-    var signin = function(user) {
+    var signin = function(signingUser) {
       return $http({
           method: 'POST',
           url: '/api/signin',
-          data: user
+          data: signingUser
         })
         .then(function(resp) {
-          var user = {error: null, id: resp.data.id, name: resp.data.displayName, token: resp.data.authToken, foodTokens: resp.data.foodTokens};
-          user.error = authorized(resp.status, "signIn");
-          return user;
+          var signedInUser = {error: null, id: resp.data.id, name: resp.data.displayName, token: resp.data.authToken, foodTokens: resp.data.foodTokens};
+          signedInUser.error = authorized(resp.status, "signIn");
+          return signedInUser;
         });
     };
 
@@ -169,9 +170,11 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
           user.error = authorized(resp.status, "signUp");
           return user;
         });
+
     };
 
     var isAuth = function() {
+
       return $http({
         method: 'GET',
         url: '/boorish/users/signedin'
@@ -181,9 +184,20 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         }
         return false;
       })
+
       return !!$window.localStorage.getItem('com.oneApp');
     };
 
+    var deleteAcc = function (password){
+      return $http({
+        method: 'DELETE',
+        url: '/boorish/users/'
+        data: password
+      }).then (function {
+        return authorized(resp.status, "deleteAcc") === null;
+      })
+
+    }
     // var signout = function() {
     //   $window.localStorage.removeItem('com.oneApp');
     //   $location.path('/signin');
@@ -202,7 +216,8 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     return {
       signin: signin,
       signup: signup,
-      isAuth: isAuth
+      isAuth: isAuth,
+      deleteAcc: deleteAcc
     };
   })
   .factory('Users', function ($http){
@@ -228,6 +243,23 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       })
     };
 
+    var editMeal = function (mid, changes){
+      $http({
+        method: 'PUT',
+        url: '/boorish/meals/' + mid,
+        data: changes
+      })
+    }
+    return {
+      getMeals: getMeals,
+      buyMeal: buyMeal,
+      editMeal: editMeal
+      // getUserMeals: getUserMeals,
+      // confirmReq: confirmReq,
+      // makeReq: makeReq,
+      // pendingReq: pendingReq,
+      // searchByIngredient: searchByIngredient,
+    }
   })
   .factory('Feedback', function ($http){
 
@@ -238,7 +270,9 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         data: feedback
       })
     }
-
+    return {
+      submitFeedback: submitFeedback
+    }
     // var retrieveFeedBack = function (){
     //   return $http({
     //     method: "GET",
