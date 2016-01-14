@@ -1,14 +1,9 @@
-angular.module('dashboard', [])
+angular.module('dashboard', ['ngMaterial', 'ngMessages'])
 
-.controller('dashController', function() {
-  User.getUser(uid)
-  .then(function(user) {
-    $scope.tokenBalance = user.foodTokens;
-    return;
-  })
-  .then(function() {
-    return User.getMeals(uid);
-  })
+.controller('dashController', function(Users) {
+  $scope.tokenBalance = Users.getBalance();
+
+  Users.getMeals()
   .then(function(meals) {
     if (meals.eating.current.length) {
       $scope.nextMeal = meals.eating.current[0];
