@@ -45,9 +45,9 @@
 <body ng-app="oneApp" layout='row' class='layout-row'>
   <div layout='column' flex class='layout-column flex' ng-controller="AuthController">
     <!-- navbar content -->
-    <md-toolbar class='md-whiteframe-glow-z1' ng-show="location.$$path != '/signin' && location.$$path != '/register' " layout-align="center center">
+    <md-toolbar class='navbar md-whiteframe-2dp' ng-show="location.$$path != '/signin' && location.$$path != '/register' " layout-align="center center">
       <div class="md-toolbar-tools" flex="80" layout-align="center center">
-        <md-button ng-href="#/browse">OneForOne</md-button>
+        <a class='logo' href="#/browse">lunchbox</a>
         <span flex></span>
 <!--         <md-button ng-href="#/signin" class="" aria-label="Learn More">
           Sign In 

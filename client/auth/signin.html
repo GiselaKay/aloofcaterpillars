@@ -13,26 +13,27 @@
 
 <div class="md-padding auth-form" layout="row" layout-wrap="" layout-align="center center">
   <div ng-model='register' ng-controller='AuthController' flex="40" flex-sm="60" flex-xs='100' layout="column">
+    <h1 class='splash-logo'>Lunchbox</h1>
     <md-card class="auth-card">
       <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
-      <md-card-title>
+     <!--  <md-card-title>
         <md-card-title-text>
           <span class="md-headline">Welcome back!</span>
         </md-card-title-text>
-      </md-card-title>
+      </md-card-title> -->
       <md-card-content>
         <form name="userForm" layout='column'>
-            <md-input-container class="md-block">
+            <md-input-container class="md-block md-accent">
               <label>Username</label>
               <input ng-model="user.username" type='text'>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="md-block md-accent">
               <label>Password</label>
               <input ng-model="user.password" type='password'>
             </md-input-container>
           <div layout='row' layout-align='end center'>
             <md-button ng-href='#/register'>Need account?</md-button>
-            <md-button type="submit" ng-click="signin()" class="md-raised md-primary">Sign In</md-button>
+            <md-button type="submit" ng-click="signin()" class="md-raised md-accent">Sign In</md-button>
           </div>
         </form>
       </md-card-content>

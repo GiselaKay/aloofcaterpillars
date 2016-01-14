@@ -16,7 +16,32 @@ angular.module('oneApp', [
   'ngFileUpload' //Needed for photo upload
 ])
 
-.config(function($routeProvider, $httpProvider) {
+.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
+
+
+   $mdThemingProvider
+    .theme('default')
+    .primaryPalette('grey', {
+      'default': '800',
+      'hue-1': '600',
+      'hue-2': '400',
+      'hue-3': '100'
+    })
+    .accentPalette('green', {
+      'default': '600',
+      'hue-1': '400',
+      'hue-2': '800',
+      'hue-3': '200',
+    })
+    .warnPalette('red')
+    .backgroundPalette('grey', {
+      'default': '100',
+      'hue-1': '50',
+      'hue-2': '200',
+      'hue-3': '400'
+    })
+
+
     $routeProvider
       .when('/', {
         templateUrl: '/browse/browse.html',

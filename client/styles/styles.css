@@ -1,3 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
+.logo {
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+.logo:hover {
+
+  text-shadow: 0px 0px 5px rgba(0, 120, 0, 1);
+}
+
+.splash-logo {
+  font-family: 'Bangers', cursive;
+  font-size: 60px;
+  color: white;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+
 .auth-form {
   width: 100vw;
   height: 100vh;
