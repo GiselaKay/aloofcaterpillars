@@ -136,19 +136,24 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     };
 
     var signup = function(user) {
+
       return $http({
           method: 'POST',
           url: '/boorish/users',
           data: user
         })
         .then(function(resp) {
+          var user = {error: null, id: resp.data.id, token: resp.data.authToken}
           if (resp.status === 200) {
-            return resp.data.token;
+            return user;
           }
-          if (resp.status === 409) {
-            $scope.error = "Username already exists"
+          else if (resp.status === 409) {
+            user.error = "Username already exists"
           }
-          return;
+          else {
+            user.error = "Unknown Error";
+          }
+          return user;
         });
     };
 
@@ -163,9 +168,15 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     };
 
     var currentUser = function() {
-      return $window.localStorage.getItem('com.oneAppUser');
+      var userID = $window.localStorage.getItem('com.oneAppID');
+      $http({
+        method: 'GET',
+        url: '/boorish/users/' + userID
+      }).then(function (resp){
+        return resp;
+      })
+      // return $window.localStorage.getItem('com.oneAppID');
     };
-
     return {
       signin: signin,
       signup: signup,
@@ -173,10 +184,10 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       signout: signout,
       currentUser: currentUser
     };
-  });
-  .factory('homepage', function ($http){
+  })
+  .factory('activity', function ($http){
     var getHomePageData = function (){
-      var userID = $window.localStorage.getItem('com.oneAppUser');
+      var userID = $window.localStorage.getItem('com.oneAppID');
       $http({
         method: 'GET',
         url: '/boorish/meals/users/' + userID
@@ -187,4 +198,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         $scope.pastCreated = resp.data.created.past;
       })
     }
-  });
+  })
+  .factory('userData', function ($http){
+
+  })
