@@ -3,6 +3,7 @@ angular.module('auth', [])
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
   $scope.click = false;
+  $scope.location = $location;
   
   //if you're coming from logout, destroy token
 
@@ -29,8 +30,8 @@ angular.module('auth', [])
         $window.localStorage.setItem('com.oneApp', token.token)
         $window.localStorage.setItem('com.oneAppUser', token.username);
         $location.path('/browse');
-        $scope.user = token.username;
-        console.log($scope.user);
+        // $scope.user = token.username;
+        // console.log($scope.user);
       })
       .catch(function (error) {
         console.error(error);

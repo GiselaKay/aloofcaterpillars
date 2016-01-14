@@ -1,119 +1,29 @@
-/*md-card-title {
-    background-color: #eee;
-    border-bottom: 1px solid #E1E1E3;
+.auth-form {
+  width: 100vw;
+  height: 100vh;
+  /*background-size: cover;*/
+  text-shadow: 0 1px 1px hsla(0,0%,100%,.3);
 }
 
-md-card-actions {
-    background-color: #eee;
-    border-top: 1px solid #E1E1E3;
-}*/
-
-/*.inputdemoBasicUsage .md-datepicker-button {
-  width: 36px; }
-
-.hr1 {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+.auth-form, .auth-card::before {
+  background: url(../images/banner.jpg) 0 / cover fixed;
 }
 
-#selections {
+.auth-card {
     position: relative;
-    min-height: 85px;
-  }
-
-
-/*This allowed for flip cards via this site
-    Used fmp-card-directive if you want to look it up
-
-*/
-/*
-.carddemoBasicUsage .card-media {
-  background-color: #999999; }
-
-.card {	
-	float: left;
-	display: inline-block;
+    background: hsla(0,0%,100%,.8) border-box;
+    overflow: hidden;
+    z-index: 1;
 }
 
-#left { float:left; }
-#right { float:right; }
-ul { overflow:auto; }
-
-
-*/
-/* Allows for all the figure sliding goodness*/
-/*figure {
-    margin: 0;
-    position: relative;
-    width: 70%;
-    display: inline-block;
-}
-figure img {
-    display: block;
-    position: relative;
-    z-index: 10;
-    max-width: 100%;
-    height: auto;
-}
-figure figcaption {
-    display: block;
+/*attempting to make frosted glass effect
+.auth-card::before {
+    content: '';
     position: absolute;
-    z-index: 5;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: -30px;
+    z-index: 0;
+    -webkit-filter: blur(25px);
+    filter: blur(25px);
 }
-figure h3 {
-    color: #fff;
-    font-size: 22px;
-    line-height: 1.2;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-figure span {
-    color: #b2cce1;
-    display: block;
-    line-height: 1.2;
-}
-figure a.close-caption {
-    display: block;
-    position: absolute;
-    width: 44px;
-    height: 44px;
-    text-align: center;
-    line-height: 44px;
-    font-size: 24px;
-    font-weight: 700;
-    color: #315a7d;
-}
-figure a.close-caption.hidden {
-    display: none
-}
-
-
-/*More figure sliding magic*/
-/*#effect-1 a.close-caption {
-    bottom: 10px;
-    right: 10px;
-}
-#effect-1 figure {
-    background-color: #36C36E;
-}
-#effect-1 figcaption {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-}
-#effect-1 figure img {
-    transition: all 0.3s;
-}
-.no-touch #effect-1 figure:hover img,
-#effect-1 figure.hover img {
-    transform: translateY(-90px);
-}
-
-button {
-    color: black;
-
-
-}*/
+*/

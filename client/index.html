@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>One For One</title>
   
-  <link rel="stylesheet" href="./styles/styles.css">
   <link rel="stylesheet" href="./lib/angular-material/angular-material.css">
   <link rel="stylesheet" href="./lib/fmp-card-directive/css/fmpCardDirective.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
 
   <!-- Scripts for Angular -->
   <script src="./lib/angular/angular.js"></script>
@@ -39,11 +39,10 @@
     
 </head>
 <body ng-app="oneApp" layout='row' class='layout-row'>
-  <div layout='column' flex class='layout-column flex'>
-
+  <div layout='column' flex class='layout-column flex' ng-controller="AuthController">
     <!-- navbar content -->
-    <md-toolbar class='md-whiteframe-glow-z1'>
-      <div class="md-toolbar-tools" ng-controller="AuthController">
+    <md-toolbar class='md-whiteframe-glow-z1' ng-show="location.$$path != '/signin' && location.$$path != '/register' ">
+      <div class="md-toolbar-tools">
         <md-button ng-href="#/browse">OneForOne</md-button>
         <span flex></span>
         <md-button ng-href="#/signin" class="" aria-label="Learn More">
@@ -62,7 +61,7 @@
     </md-toolbar>
 
     <!-- page content here -->
-    <md-content ng-view md-scroll-y flex layout-padding class='layout-padding flex'>
+    <md-content ng-view md-scroll-y flex class='flex'>
       <!-- <div ng-view></div> -->
     </md-content> 
     
