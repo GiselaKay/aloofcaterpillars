@@ -41,13 +41,13 @@
 <body ng-app="oneApp" layout='row' class='layout-row'>
   <div layout='column' flex class='layout-column flex' ng-controller="AuthController">
     <!-- navbar content -->
-    <md-toolbar class='md-whiteframe-glow-z1' ng-show="location.$$path != '/signin' && location.$$path != '/register' ">
-      <div class="md-toolbar-tools">
+    <md-toolbar class='md-whiteframe-glow-z1' ng-show="location.$$path != '/signin' && location.$$path != '/register' " layout-align="center center">
+      <div class="md-toolbar-tools" flex="80" layout-align="center center">
         <md-button ng-href="#/browse">OneForOne</md-button>
         <span flex></span>
-        <md-button ng-href="#/signin" class="" aria-label="Learn More">
+<!--         <md-button ng-href="#/signin" class="" aria-label="Learn More">
           Sign In 
-        </md-button>
+        </md-button> -->
         <md-button ng-click="signout()" class="" aria-label="Learn More">
           Logout
         </md-button>

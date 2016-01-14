@@ -1,76 +1,76 @@
-<!DOCTYPE html>
-<div ng-controller="browseCtrl" layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage" ng-app="browse">
-  <div>
-    <form name="userForm">
-      <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm="">
-        <label>Search all meals </label>
-        <input type="text" ng-model="user.input">
-        </md-input-container>
-        <div>
-          
-          
-          <md-input-container>
-          <label>Search by Protein</label>
-          
-          <md-select ng-model="ingredient">
-          <md-menu-content width="2">
-          <md-optgroup label="Meats">
-          <md-button ng-click="searchIngredient(ingredient)" ng-value="ingredient.name" ng-repeat="ingredient in proteins | filter: {category: 'meat' }" >{{ingredient.name}}
-          </md-button>
-          </md-optgroup>
-          <md-optgroup label="Veggies">
-          <md-button ng-click="searchIngredient(ingredient)" ng-value="ingredient.name" ng-repeat="ingredient in proteins | filter: {category: 'veg' }" >{{ingredient.name}}
-          </md-button>
-          </md-optgroup>
-          </md-menu-content>
-          </md-select>
+<div layout='row' layout-align="center center">
+  <div ng-controller="browseCtrl" layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage" ng-app="browse" flex="80" >
+    <div>
+      <form name="userForm">
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm="">
+          <label>Search all meals </label>
+          <input type="text" ng-model="user.input">
           </md-input-container>
-          
+          <div>
+            
+            
+            <md-input-container>
+            <label>Search by Protein</label>
+            
+            <md-select ng-model="ingredient">
+            <md-menu-content width="2">
+            <md-optgroup label="Meats">
+            <md-button ng-click="searchIngredient(ingredient)" ng-value="ingredient.name" ng-repeat="ingredient in proteins | filter: {category: 'meat' }" >{{ingredient.name}}
+            </md-button>
+            </md-optgroup>
+            <md-optgroup label="Veggies">
+            <md-button ng-click="searchIngredient(ingredient)" ng-value="ingredient.name" ng-repeat="ingredient in proteins | filter: {category: 'veg' }" >{{ingredient.name}}
+            </md-button>
+            </md-optgroup>
+            </md-menu-content>
+            </md-select>
+            </md-input-container>
+            
+            
+          </div>
+          <div>
+            <md-input-container>
+            <label>Search by Diet</label>
+            
+            <md-select ng-model="ingredient">
+            <md-menu-content width="2">
+            <md-optgroup label="Restrictions">
+            <md-button ng-click="searchIngredient(ingredient)" ng-value="ingredient.name" ng-repeat="diet in restrict" >{{diet}}
+            </md-button>
+            </md-optgroup>
+            </md-menu-content>
+            </md-select>
+            </md-input-container>
+          </div>
           
         </div>
-        <div>
-          <md-input-container>
-          <label>Search by Diet</label>
-          
-          <md-select ng-model="ingredient">
-          <md-menu-content width="2">
-          <md-optgroup label="Restrictions">
-          <md-button ng-click="searchIngredient(ingredient)" ng-value="ingredient.name" ng-repeat="diet in restrict" >{{diet}}
-          </md-button>
-          </md-optgroup>
-          </md-menu-content>
-          </md-select>
-          </md-input-container>
+      </form>
+    </div>
+
+  <div layout='row'>
+    <div ng-repeat="meal in browseMeals" layout="column">
+      <div class='figure'>
+        <div id="effect-1">
+          <div class="two-col col-row clearfix">
+            <div class="col col-1-2">
+              <figure>
+                <img ng-src="data:image/JPEG;base64,{{meal.picture}}"/>
+                <figcaption>
+                <h3>{{meal.title}}</h3>
+                <span><button ng-click="makeRequest(meal)">Request from {{meal.creator}}
+                  </button>
+                </span>
+                </figcaption>
+              </figure>
+            </div>
+            <h2>{{meal.protein}}</h2>
+
         </div>
         
       </div>
-    </form>
-  </div>
-
-<div layout='row'>
-  <div ng-repeat="meal in browseMeals" layout="column">
-    <div class='figure'>
-      <div id="effect-1">
-        <div class="two-col col-row clearfix">
-          <div class="col col-1-2">
-            <figure>
-              <img ng-src="data:image/JPEG;base64,{{meal.picture}}"/>
-              <figcaption>
-              <h3>{{meal.title}}</h3>
-              <span><button ng-click="makeRequest(meal)">Request from {{meal.creator}}
-                </button>
-              </span>
-              </figcaption>
-            </figure>
-          </div>
-          <h2>{{meal.protein}}</h2>
-
+    </div>
+    </div>
       </div>
-      
     </div>
-  </div>
-  </div>
-    </div>
-  </div>
-    </fmp-card>
+</div>
