@@ -55,10 +55,10 @@ angular.module('auth', [])
       });
   }
 
-  $scope.signout = function() {
-    console.log('clicked')
-    $window.localStorage.setItem('com.oneApp', {})
-    $window.localStorage.setItem('com.oneAppUser', "")
-    $location.path('/signin')
-  };
+  // $scope.signout = function() {
+  //   console.log('clicked')
+  //   $window.localStorage.setItem('com.oneApp', {})
+  //   $window.localStorage.setItem('com.oneAppUser', "")
+  //   $location.path('/signin')
+  // };
 });
