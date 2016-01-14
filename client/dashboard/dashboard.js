@@ -20,9 +20,9 @@ angular.module('dashboard', ['ngMaterial', 'ngMessages'])
       $scope.nextOffer = meals.created.current[0];
     } else {
       $scope.nextOffer = {
-        imgUrl: '' // need address of default image
+        imgUrl: '', // need address of default image
         title: 'Share a meal with someone',
-        date_available: 'Sometime soon, we hope'
+        date_available: 'Sometime soon, we hope',
         portions: 'Lots!'
       };
     }
