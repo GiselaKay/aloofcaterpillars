@@ -9,7 +9,7 @@ angular.module('dashboard', ['ngMaterial', 'ngMessages'])
       $scope.nextMeal = meals.eating.current[0];
     } else {
       $scope.nextMeal = {
-        imgUrl: '' // need address of default image
+        imgUrl: '', // need address of default image
         title: 'We don\'t know yet!',
         creator: 'a friend',
         date_available: 'Sometime soon, we hope'
