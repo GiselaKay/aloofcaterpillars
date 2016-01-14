@@ -1,13 +1,17 @@
 angular.module('oneApp', [
+  'auth',
   'browse',
   'create',
+  'dashboard',
   'factories',
-  'ngRoute',
-  'auth',
-  'ngMaterial',
+  'feedback',
   'fmp-card',
-  'viewReq',
   'ngAnimate',
+  'ngRoute',
+  'ngMaterial',
+  'orders',
+  'review',
+  'viewReq',
   'base64', //Needed for photo upload
   'ngFileUpload' //Needed for photo upload
 ])
@@ -52,21 +56,25 @@ angular.module('oneApp', [
         templateUrl: '/auth/signin.html',
         controller: 'AuthController'
       })
-      // .when('/dashboard', {
-      //   templateUrl: '/dashboard/dashboard.html',
-      //   controller: 'dashController'
-      // })
-      // .when('/feedback', {
-      //   templateUrl: '/feedback/feedback.html',
-      //   controller: 'feedbackCtonroller'
-      // })
-      // .when('/orders', {
-      //   templateUrl: '/orders/orders.html',
-      //   controller: 'ordersController'
-      // })
-      // .otherwise({
-      //   redirectTo: '/dashboard'
-      // })
+      .when('/dashboard', {
+        templateUrl: '/dashboard/dashboard.html',
+        controller: 'dashController'
+      })
+      .when('/feedback', {
+        templateUrl: '/feedback/feedback.html',
+        controller: 'feedbackController'
+      })
+      .when('/orders', {
+        templateUrl: '/orders/orders.html',
+        controller: 'ordersController'
+      })
+      .when('/review', {
+        templateUrl: '/review/review.html',
+        controller: 'reviewController'
+      })
+      .otherwise({
+        redirectTo: '/dashboard'
+      })
 
     //Standard Auth from Angular Shortly
     $httpProvider.interceptors.push('AttachTokens');
