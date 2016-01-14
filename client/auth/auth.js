@@ -29,6 +29,7 @@ angular.module('auth', [])
         console.log(token)
         $window.localStorage.setItem('com.oneApp', token.token)
         $window.localStorage.setItem('com.oneAppUser', token.username);
+        $window.localStorage.setItem('com.oneAppBalance', token.foodTokens);
         $location.path('/browse');
         // $scope.user = token.username;
         // console.log($scope.user);
