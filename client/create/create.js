@@ -6,15 +6,17 @@ angular.module('create', [])
       console.log('MEAL CREATED', $location);
       // debugger;
     $scope.addMeal = function(meal) {
-     
+
     var meal = meal;
     console.log(Upload)
     var creator = Auth.currentUser();
 
     meal.upload = Upload.upload({
       url: '/api/create',
-      data: {meal: meal, creator: creator, title: $scope.meal.title, quantity: $scope.meal.quantity},
+      data: {creator: creator, date_available: data, description: description, ingredients: ingredients, portions: portions, quantity: $scope.meal.quantity, tags, tags, title: $scope.meal.title }
+      //TODO: find out how to deal with picture & add fields in html
     });
+    //{ imgUrl: String tags: Array }
     meal.upload.then(function (resp) {
       $location.path("/browse")
       });
