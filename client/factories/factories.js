@@ -123,6 +123,26 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     // that JWT is then stored in localStorage as 'com.shortly'
     // after you signin/signup open devtools, click resources,
     // then localStorage and you'll see your token from the server
+    var authorized = function (status, situation){
+      if (status === 200) {
+        return null;
+      }
+      else if (status === 401){
+        if(situation === "signIn"){
+          return "Wrong Password";
+        }
+        else if(situation == "signUp"){
+          return "Username Already Exists";
+        }
+        else if (situation === "checkAuth") {
+          return "Not Logged In";
+        }
+      }
+      else {
+        return "Unknown Error";
+      }
+    }
+
     var signin = function(user) {
       return $http({
           method: 'POST',
@@ -130,8 +150,9 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
           data: user
         })
         .then(function(resp) {
-          console.log(resp)
-          return resp.data;
+          var user = {error: null, id: resp.data.id, username: resp.data.displayName, token: resp.data.authToken};
+          user.error = authorized(resp.status, "signIn");
+          return user;
         });
     };
 
@@ -144,21 +165,21 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         })
         .then(function(resp) {
           var user = {error: null, id: resp.data.id, token: resp.data.authToken}
-          if (resp.status === 200) {
-            return user;
-          }
-          else if (resp.status === 409) {
-            user.error = "Username already exists"
-          }
-          else {
-            user.error = "Unknown Error";
-          }
+          user.error = authorized(resp.status, "signUp");
           return user;
         });
     };
 
     var isAuth = function() {
-      console.log('Checking Authentication')
+      return $http({
+        method: 'GET',
+        url: '/boorish/users/signedin'
+      }).then(function (resp){
+        if(authorized(resp.status, "checkAuth") === null){
+          return true;
+        }
+        return false;
+      })
       return !!$window.localStorage.getItem('com.oneApp');
     };
 
