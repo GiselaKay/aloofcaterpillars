@@ -30,12 +30,11 @@ angular.module('auth', [])
   };
 
   $scope.signin = function () {
-    console.log("sign in info", $scope.user)
     Auth.signin($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.oneApp', token.token)
-        $window.localStorage.setItem('com.oneAppUser', token.username);
-        $window.localStorage.setItem('com.oneAppBalance', token.foodTokens);
+      .then(function (user) {
+        $window.localStorage.setItem('com.oneApp', user.authToken)
+        $window.localStorage.setItem('com.oneAppUser', user.username);
+        $window.localStorage.setItem('com.oneAppBalance', user.foodTokens);
         $location.path('/browse');
         // $scope.user = token.username;
         // console.log($scope.user);
