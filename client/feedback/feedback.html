@@ -1,5 +1,5 @@
 <div name='feedback' class='container'>
-  <md-card ng-repeat='meal in pastMeals' ng-if='pastMeals.length'>
+  <md-card ng-repeat='meal in pastMeals' ng-if='pastMeals.length' ng-cloak>
     <md-card-title>
       <md-card-title-text>
         <span class="md-headline">{{ meal.title }}</span>
