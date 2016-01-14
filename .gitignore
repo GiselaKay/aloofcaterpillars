@@ -9,4 +9,4 @@ db/
 client/lib
 
 *.iml
-/idea
+.idea/

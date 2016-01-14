@@ -43,7 +43,7 @@
     
 </head>
 <body ng-app="oneApp" layout='row' class='layout-row'>
-  <div layout='column' flex class='layout-column flex' ng-controller="AuthController">
+  <div layout='column' flex class='layout-column flex' ng-controller="AuthController" style="height: 100%; width: 100%">
     <!-- navbar content -->
     <md-toolbar class='navbar md-whiteframe-2dp' ng-show="location.$$path != '/signin' && location.$$path != '/register' " layout-align="center center">
       <div class="md-toolbar-tools" flex="80" layout-align="center center">
@@ -65,14 +65,23 @@
     </md-toolbar>
 
     <!-- page content here -->
-    <md-content ng-view md-scroll-y flex class='flex'>
+    <md-content ng-view md-scroll-y flex class='flex' style="height: 100%; width: 100%">
       <!-- <div ng-view></div> -->
-    </md-content> 
+    </md-content>
     
   <!-- <div id="preloader">
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i><div layout="row" flex class="fill-height layout-row flex">
   </div> -->
-    
+    <md-toolbar class='md-whiteframe-2dp footer'layout-align="center center">
+      <div class="md-toolbar-tools" flex="80" layout-align="start center">
+        <md-button ng-href="" class="" aria-label="Learn More">
+          About
+        </md-button>
+        <md-button ng-href="" class="" aria-label="Learn More">
+          Support
+        </md-button>
+      </div>
+    </md-toolbar>
   </div>
 </body>
 </html>
