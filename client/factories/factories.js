@@ -150,7 +150,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
           data: user
         })
         .then(function(resp) {
-          var user = {error: null, id: resp.data.id, username: resp.data.displayName, token: resp.data.authToken};
+          var user = {error: null, id: resp.data.id, name: resp.data.displayName, token: resp.data.authToken, foodTokens: resp.data.foodTokens};
           user.error = authorized(resp.status, "signIn");
           return user;
         });
@@ -188,16 +188,16 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       $location.path('/signin');
     };
 
-    var currentUser = function() {
-      var userID = $window.localStorage.getItem('com.oneAppID');
-      $http({
-        method: 'GET',
-        url: '/boorish/users/' + userID
-      }).then(function (resp){
-        return resp;
-      })
-      // return $window.localStorage.getItem('com.oneAppID');
-    };
+    // var currentUser = function() {
+    //   var userID = $window.localStorage.getItem('com.oneAppID');
+    //   $http({
+    //     method: 'GET',
+    //     url: '/boorish/users/' + userID
+    //   }).then(function (resp){
+    //     return resp;
+    //   })
+    //   // return $window.localStorage.getItem('com.oneAppID');
+    // };
     return {
       signin: signin,
       signup: signup,
