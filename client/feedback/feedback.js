@@ -1,7 +1,7 @@
-angular.module('feedback', [])
+angular.module('feedback', ['ngMaterial', 'ngMessages'])
 
-.controller('feedbackController', function() {
-  User.getMeals(uid)
+.controller('feedbackController', function(Users) {
+  Users.getMeals()
   .then(function(meals) {
     var pastMeals = meals.created.past;
     var meals;
