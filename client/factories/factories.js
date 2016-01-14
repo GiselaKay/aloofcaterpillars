@@ -183,10 +183,10 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       return !!$window.localStorage.getItem('com.oneApp');
     };
 
-    var signout = function() {
-      $window.localStorage.removeItem('com.oneApp');
-      $location.path('/signin');
-    };
+    // var signout = function() {
+    //   $window.localStorage.removeItem('com.oneApp');
+    //   $location.path('/signin');
+    // };
 
     // var currentUser = function() {
     //   var userID = $window.localStorage.getItem('com.oneAppID');
@@ -201,9 +201,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     return {
       signin: signin,
       signup: signup,
-      isAuth: isAuth,
-      signout: signout,
-      currentUser: currentUser
+      isAuth: isAuth
     };
   })
   .factory('activity', function ($http){
