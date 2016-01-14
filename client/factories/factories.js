@@ -20,9 +20,10 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
   ]
 
   var storeMeal = function(meal) {
+    //TODO: Switch to addMeal
     return $http({
       method: 'POST',
-      url: '/api/create',
+      url: '/boorish/meals',
       data: meal
     })
     .then(function(resp) {
@@ -35,11 +36,11 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
   var getAllMeals = function() {
     return $http({
       method:'GET',
-      url:'/api/browse'
+      url:'/boorish/meals'
     }).success(function(resp){
       return resp.data;
     }).error(function(){
-      alert('error');
+      alert('Error: Cannot Retrieve Meals From Server. Check your connection & try again');
     })
   }
 
@@ -164,7 +165,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
           data: user
         })
         .then(function(resp) {
-          var user = {error: null, id: resp.data.id, token: resp.data.authToken}
+          var user = {error: null, token: resp.data.authToken}
           user.error = authorized(resp.status, "signUp");
           return user;
         });
@@ -204,20 +205,45 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
       isAuth: isAuth
     };
   })
-  .factory('activity', function ($http){
-    var getHomePageData = function (){
-      var userID = $window.localStorage.getItem('com.oneAppID');
+  .factory('Users', function ($http){
+
+    var getMeals = function (){
+      return $http({
+        method: "GET",
+        url: '/boorish/meals/users/'
+      }).then(function (resp){
+        var user = {}
+        user.currentEating = resp.data.eating.current;
+        user.currentCreated = resp.data.created.current;
+        user.pastEating = resp.data.eating.past;
+        user.pastCreated = resp.data.created.past;
+        return user;
+      })
+    };
+
+    var buyMeal = function (mid){
       $http({
-        method: 'GET',
-        url: '/boorish/meals/users/' + userID
-      }).then(function(resp){
-        $scope.currentEating = resp.data.eating.current;
-        $scope.currentCreated = resp.data.created.current;
-        $scope.pastEating = resp.data.eating.past;
-        $scope.pastCreated = resp.data.created.past;
+        method: "POST",
+        url:  '/boorish/meals/' + mid
+      })
+    };
+
+  })
+  .factory('Feedback', function ($http){
+
+    var submitFeedback = function (feedback){
+      $http({
+        method: "POST",
+        url: '/boorish/feedback/meals/' + feedback.meal_id,
+        data: feedback
       })
     }
-  })
-  .factory('userData', function ($http){
+
+    // var retrieveFeedBack = function (){
+    //   return $http({
+    //     method: "GET",
+    //     url: '/boorish/feedback/meals/' + feedbac
+    //   })
+    // }
 
   })
