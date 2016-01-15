@@ -245,11 +245,12 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         var userData = {lunchboxes: resp.data.foodTokens, rating: resp.data.rating, name: resp.data.displayName || resp.data.username};
         return userData;
       })
-    }
+    };
+
     var buyMeal = function (mid){
       $http({
         method: "POST",
-        url:  '/boorish/meals/' + mid
+        url:  '/boorish/meals/users/' + mid
       })
     };
 
@@ -260,11 +261,19 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         data: changes
       })
     }
+    var returnMeal = function (mid){
+      $http({
+        method: 'PUT',
+        url: '/boorish/meals/users/' + mid
+      })
+    }
+
     return {
       getMeals: getMeals,
       buyMeal: buyMeal,
       editMeal: editMeal,
-      getUserInfo: getUserInfo
+      getUserInfo: getUserInfo,
+      returnMeal: returnMeal
       // getUserMeals: getUserMeals,
       // confirmReq: confirmReq,
       // makeReq: makeReq,
