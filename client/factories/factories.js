@@ -148,25 +148,26 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     var signin = function(signingUser) {
       return $http({
           method: 'POST',
-          url: '/api/signin',
+          url: '/boorish/users/signin',
           data: signingUser
         })
         .then(function(resp) {
-          var signedInUser = {error: null, id: resp.data.id, name: resp.data.displayName, token: resp.data.authToken, foodTokens: resp.data.foodTokens};
-          signedInUser.error = authorized(resp.status, "signIn");
+          var signedInUser = {token: resp.data.token};
           return signedInUser;
+        }, function (resp){
+          var error = {error: authorized(resp.status, "signIn")};
+          return error;
         });
     };
 
     var signup = function(user) {
-
       return $http({
           method: 'POST',
           url: '/boorish/users',
           data: user
         })
         .then(function(resp) {
-          var user = {error: null, token: resp.data.authToken}
+          var user = {error: null, token: resp.data.token}
           user.error = authorized(resp.status, "signUp");
           return user;
         });
@@ -185,15 +186,15 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         return false;
       })
 
-      return !!$window.localStorage.getItem('com.oneApp');
+      // return !!$window.localStorage.getItem('com.oneApp');
     };
 
     var deleteAcc = function (password){
       return $http({
         method: 'DELETE',
-        url: '/boorish/users/'
+        url: '/boorish/users/',
         data: password
-      }).then (function {
+      }).then (function (){
         return authorized(resp.status, "deleteAcc") === null;
       })
 
@@ -227,15 +228,24 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         method: "GET",
         url: '/boorish/meals/users/'
       }).then(function (resp){
-        var user = {}
-        user.currentEating = resp.data.eating.current;
-        user.currentCreated = resp.data.created.current;
-        user.pastEating = resp.data.eating.past;
-        user.pastCreated = resp.data.created.past;
-        return user;
+        var userMeals = {}
+        userMeals.currentEating = resp.data.eating.current;
+        userMeals.currentCreated = resp.data.created.current;
+        userMeals.pastEating = resp.data.eating.past;
+        userMeals.pastCreated = resp.data.created.past;
+        return userMeals;
       })
     };
 
+    var getUserInfo = function (){
+      return $http({
+        method: "GET",
+        url: '/boorish/users/'
+      }).then(function (resp){
+        var userData = {lunchboxes: resp.data.foodTokens, rating: resp.data.rating, name: resp.data.displayName || resp.data.username};
+        return userData;
+      })
+    }
     var buyMeal = function (mid){
       $http({
         method: "POST",
@@ -253,7 +263,8 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     return {
       getMeals: getMeals,
       buyMeal: buyMeal,
-      editMeal: editMeal
+      editMeal: editMeal,
+      getUserInfo: getUserInfo
       // getUserMeals: getUserMeals,
       // confirmReq: confirmReq,
       // makeReq: makeReq,
