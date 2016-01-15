@@ -38,13 +38,14 @@ angular
     // ]
     $scope.getAllMeals = function (){
       Meals.getAllMeals().then(function(data){
-        $scope.data = data.data
+        $scope.data = data.data;
         // Scope.data: [ { imgUrl: String, description: String, title: String, ingredients: Array, creator: String,, REVIEW (format: 080916?) date_available: Number, portions: Number, tags: Array, feedback: Array , overall: Number } ]
-        for (var i = 0; i < $scope.data.length; i++) {
-          if ($scope.activeUser !== $scope.data[i].creator) {
-            $scope.browseMeals.push($scope.data[i])
-          }
-        }
+        // for (var i = 0; i < $scope.data.length; i++) {
+        //   if ($scope.activeUser !== $scope.data[i].creator) {
+        //     $scope.browseMeals.push($scope.data[i])
+        //   }
+
+        // }
       })
     }
     $scope.makeRequest = function(meal_id) {
