@@ -1,8 +1,8 @@
 angular.module('auth', [])
 
-.controller('AuthController', function ($scope, $window, $location, Auth) {
+.controller('AuthController', function ($scope, $window, $location, Auth, Users) {
   $scope.user = {};
-  $scope.inUser = {}; // signedIn
+  $scope.userInfo = {}; // signedIn
   $scope.click = false;
   $scope.location = $location;
 
@@ -16,7 +16,7 @@ angular.module('auth', [])
     Auth.signup($scope.user)
       .then(function (user) {
         if(!user.error){
-          $window.localStorage.setItem('com.oneApp', user.authToken);
+          $window.localStorage.setItem('com.oneApp', user.token);
           $location.path('/browse');
         }
         else{
@@ -33,11 +33,17 @@ angular.module('auth', [])
 
     Auth.signin($scope.user)
       .then(function (user) {
+        // debugger;
         if(!user.error){
-          $window.localStorage.setItem('com.oneApp', user.authToken)
-          $scope.username = user.name;
-          $scope.lunchboxes = user.foodTokens;
-          $location.path('/browse');
+          $window.localStorage.setItem('com.oneApp', user.token)
+          Users.getUserInfo()
+            .then(function (resp){
+              $scope.userInfo.lunchboxes = resp.lunchboxes;
+              $scope.userInfo.rating = resp.rating;
+              $scope.userInfo.name = resp.name;
+              $location.path('/browse');
+              //TODO: Save this in correct area for html access
+            })
         }
         else{
           $scope.error = user.error;
