@@ -194,7 +194,7 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         method: 'DELETE',
         url: '/boorish/users/',
         data: password
-      }).then (function (){
+      }).then (function (resp){
         return authorized(resp.status, "deleteAcc") === null;
       })
 
