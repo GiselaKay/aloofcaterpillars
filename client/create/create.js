@@ -33,9 +33,6 @@ angular.module('create', [])
       // debugger;
     $scope.addMeal = function(meal) {
 
-      var meal = meal;
-      $scope.meal.creator = Auth.currentUser();
-
       Upload.upload({
         url: '/boorish/meals',
         data: $scope.meal,
