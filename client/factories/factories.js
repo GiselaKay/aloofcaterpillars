@@ -239,13 +239,24 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         method: "GET",
         url: '/boorish/meals/users/'
       }).success(function (resp){
-
-        var userMeals = {hi: "bye"};
-        // console.log(resp)
-        // userMeals.currentEating = resp.data.eating.current;
-        // userMeals.currentCreated = resp.data.created.current;
-        // userMeals.pastEating = resp.data.eating.past;
-        // userMeals.pastCreated = resp.data.created.past;
+        var userMeals = {};
+        // var userMeals = {hi: "bye"};
+        if(resp.consumed){
+          userMeals.currentEating = resp.consumed.current;
+          userMeals.pastEating = resp.consumed.past;
+        }
+        else{
+          userMeals.currentEating = [];
+          userMeals.pastEating = []
+        }
+        if(resp.created){
+          userMeals.currentCreated = resp.created.current;
+          userMeals.pastCreated = resp.created.past;
+        }
+        else{
+          userMeals.currentCreated = [];
+          userMeals.pastCreated = []
+        }
         return userMeals;
       })
     };
@@ -287,17 +298,21 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
     // };
 
     var buyMeal = function (mid){
-      $http({
+      return $http({
         method: "POST",
         url:  '/boorish/meals/users/' + mid
+      }).then(function (mid){
+        return mid;
       })
     };
 
     var editMeal = function (mid, changes){
-      $http({
+      return $http({
         method: 'PUT',
         url: '/boorish/meals/' + mid,
         data: changes
+      }).then(function (mid, changes){
+        return changes;
       })
     };
 
