@@ -36,14 +36,9 @@ angular.module('auth', [])
         // debugger;
         if(!user.error){
           $window.localStorage.setItem('com.oneApp', user.token)
-          Users.getUserInfo()
-            .then(function (resp){
-              $scope.userInfo.lunchboxes = resp.lunchboxes;
-              $scope.userInfo.rating = resp.rating;
-              $scope.userInfo.name = resp.name;
-              $location.path('/browse');
+          $scope.userInfo = Users.getUserInfo()
+          $location.path('/browse');
               //TODO: Save this in correct area for html access
-            })
         }
         else{
           $scope.error = user.error;
