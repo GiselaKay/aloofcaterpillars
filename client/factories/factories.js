@@ -245,8 +245,8 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
 
         if(resp.data.consumed){
           userMeals.eating = {
-            current: resp.data.consumed.current,
-            past: resp.data.consumed.past
+            current: resp.data.consumed.current || [],
+            past: resp.data.consumed.past || []
           }
         }
         else{
@@ -257,8 +257,8 @@ angular.module('factories', ['ngMaterial', 'ngMessages'])
         }
         if(resp.data.created){
           userMeals.created = {
-            current: resp.data.created.current,
-            past: resp.data.created.past
+            current: resp.data.created.current || [],
+            past: resp.data.created.past || []
           }
         }
         else{
