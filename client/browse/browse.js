@@ -74,7 +74,7 @@ angular.module('browse',['ngMaterial', 'ngMessages', 'factories', 'ngAnimate', '
 
   $scope.requestMeal = function(meal) {
     meal.hide = true;
-    Meals.buyMeal(meal._id)
+    Users.buyMeal(meal._id)
     .then(function(data) {
       console.log('meal requested')
     });
