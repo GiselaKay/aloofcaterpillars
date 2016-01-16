@@ -26,7 +26,7 @@ angular.module('browse',['ngMaterial', 'ngMessages', 'factories', 'ngAnimate', '
     return user.id;
   }).then(function (id){
     Meals.getAllMeals().then(function(data){
-      $scope.browseMeals = data.data.map(function(datum) {
+      $scope.browseMeals = data[0].map(function(datum) {
         datum.ingredients.length ? datum.ingredients = datum.ingredients.join(', ') : datum.ingredients = 'Not Available';
         datum.tags.length ? datum.tags = datum.tags.join(', ') : datum.tags = 'None/Not Available';
 
